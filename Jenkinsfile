@@ -1,18 +1,18 @@
 pipeline {
+    agent any
     environment {
         registry = "siddharth1207/learning"
-        registryCredential = 'dockerhub-credentials'
+        registryCredential = 'siddharth1207'
         dockerImage = ''
     }
-    agent any
-
     stages {
         stage('Cloning our Git') {
             steps {
-                git 'https://github.com/Siddharth1207/demo.git'
+                checkout scmGit(userRemoteConfigs: [
+                    [url: 'https://github.com/Siddharth1207/demo.git']
+                ])
             }
         }
-
         stage('Building our image') {
             steps {
                 script {
@@ -20,17 +20,15 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy our image') {
             steps {
                 script {
-                    withDockerRegistry(url: "", credentialsId: registryCredential) {
+                    docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
                 }
             }
         }
-
         stage('Cleaning up') {
             steps {
                 sh "docker rmi $registry:$BUILD_NUMBER"
