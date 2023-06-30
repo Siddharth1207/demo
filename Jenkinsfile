@@ -8,9 +8,7 @@ pipeline {
     stages {
         stage('Cloning our Git') {
             steps {
-                checkout scmGit(userRemoteConfigs: [
-                    [url: 'https://github.com/Siddharth1207/demo.git']
-                ])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Siddharth1207/demo.git']])
             }
         }
         stage('Building our image') {
