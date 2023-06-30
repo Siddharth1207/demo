@@ -14,7 +14,8 @@ pipeline {
         stage('Building our image') {
             steps {
                 script {
-                    dockerImage = docker.build("Kirti_image:$BUILD_NUMBER")
+					sh 'docker.build -t Kirti_image .'
+                   
                 }
             }
         }
