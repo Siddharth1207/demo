@@ -1,4 +1,4 @@
-# demo# Run the docker file saved in current folder
+# Run the docker file saved in current folder
 # it creates an imange in the docker
 # docker desktop allow tcp port
 # jenkins remove password from config .xml
@@ -25,12 +25,7 @@ Edit the config.xml file using the vi editor:
 
 arduino
 Copy code
-4.              vi config.xml      (change required in config.xml to run jenkins without password) 
- <useSecurity>false</useSecurity>
- 
- change it back to  <useSecurity>true</useSecurity> after creating the admin user for jenkins
- 
- 
+4.              vi config.xml
 Press i to enter insert mode and make the necessary changes to the file.
 
 Press Esc to exit insert mode, and then type :wq to save the changes and exit the editor.
@@ -47,7 +42,6 @@ NOTE : Installation on docker desktop machine :
 docker exec -u root -it <container_id_or_name> apt-get update
 docker exec -u root -it <container_id_or_name> apt-get install -y vim
 
-NOTE :  Check location of the file
 
 docker run --name jenkins-lts -d -p 8080:8080 -p 50000:50000 --group-add 999 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -e DOCKER_HOST=tcp://host.docker.internal:2375 my-jenkins
 
