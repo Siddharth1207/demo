@@ -23,10 +23,10 @@ FROM openjdk:11-slim
 WORKDIR /app
 
 # Copy the .jar file to the working directory
-COPY target/demo-0.0.1-SNAPSHOT.jar .
+COPY target/kirti-demo.jar .
 
 # Expose port 8080
 EXPOSE 8082
 
 # Set the entry point to run the web app
-CMD ["java", "-jar", "demo-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "kirti-demo.jar"]
